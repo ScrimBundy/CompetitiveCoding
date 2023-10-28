@@ -1,4 +1,4 @@
-# Hello World
+# Hello World!
 
 See the problem description. [Kattis][1]
 

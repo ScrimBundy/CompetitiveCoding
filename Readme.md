@@ -14,10 +14,12 @@ All solutions are compiled with the parameters provided by each respective websi
 ```
 .
 ├── CodeForces/
-│   ├── Problem Code/
-│   │   ├── Accepted/
-│   │   │   └── Accepted solutions by date of submission
-│   │   └── Related Work
+│   ├── Contest Number/
+│   │   ├── Problem/
+│   │   │   ├── Accepted/
+│   │   │   │   └── Accepted solutions by date of submission
+│   │   │   └── Related Work
+│   │   └── ...
 │   └── ...
 ├── Kattis/
 │   ├── Problem Name/
