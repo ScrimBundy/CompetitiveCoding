@@ -1,0 +1,12 @@
+{
+  "eslint.workingDirectories": [
+    {
+      "directory": "./",
+      "pattern": ["!**/Accepted/**"]
+    }
+  ],
+  "C_Cpp.codeAnalysis.exclude": {
+    "**/Accepted/**": true
+  },
+  "C_Cpp.codeAnalysis.clangTidy.headerFilter": ".*/Accepted/.*"
+}
