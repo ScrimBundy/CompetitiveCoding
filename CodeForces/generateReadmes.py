@@ -40,10 +40,14 @@ def create_problem_readme_file(directory, contest_dir_name, problem_dir_name):
 def create_contest_readme_files_recursive(directory, contest_dir_name):
     count = 0
     
-    for root, problems, _ in os.walk(directory):
-        for problem_dir_name in problems:
-            problem_directory = os.path.join(root, problem_dir_name)
-            count += create_problem_readme_file(problem_directory, contest_dir_name, problem_dir_name)
+    for item in os.listdir(directory):
+        item_dir = os.path.join(directory, item)
+        if not os.path.isdir(item_dir):
+            continue
+        count += create_problem_readme_file(item_dir, contest_dir_name, item)
+        print(item_dir)
+        
+        break # stop after the first level of subdirectories
     
     return count
 
@@ -51,10 +55,10 @@ def create_contest_readme_files_recursive(directory, contest_dir_name):
 # Function to create a Readme.md file in each subdirectory
 def create_readme_files(root_directory):
     count = 0
-    for root, contests, _ in os.walk(root_directory):
-        for contest_dir in contests:
-            directory = os.path.join(root, contest_dir)
-            count += create_contest_readme_files_recursive(directory, contest_dir)
+    for item in os.listdir(root_directory):
+        item_dir = os.path.join(root_directory, item)
+        if os.path.isdir(item_dir):
+            count += create_contest_readme_files_recursive(item_dir, item)
             
     print(f"Generated {count} Readme.md files.")
 

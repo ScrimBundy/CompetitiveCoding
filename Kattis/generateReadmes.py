@@ -21,24 +21,27 @@ def generate_readme_content(directory_name, accepted_file_name=None):
 # Function to create a Readme.md file in each subdirectory
 def create_readme_files(root_directory):
     count = 0
-    for root, dirs, _ in os.walk(root_directory):
-        for dir_name in dirs:
-            readme_path = os.path.join(root, dir_name, "Readme.md")
-            if os.path.exists(readme_path):
-                # Skip subdirectories that already have a Readme.md
-                continue
-            
-            count += 1
-            accepted_path = os.path.join(root, dir_name, "Accepted")
-            accepted_file = None
-            if os.path.exists(accepted_path):
-                accepted_files = os.listdir(accepted_path)
-                accepted_files.sort()
-                accepted_file = accepted_files[0]
-            
-            readme_content = generate_readme_content(dir_name, accepted_file)
-            with open(readme_path, "w") as readme_file:
-                readme_file.write(readme_content)
+    for item in os.listdir(root_directory):
+        item_dir = os.path.join(root_directory, item)
+        if not os.path.isdir(item_dir):
+            continue
+        
+        readme_path = os.path.join(item_dir, "Readme.md")
+        if os.path.exists(readme_path):
+            # Skip subdirectories that already have a Readme.md
+            continue
+        
+        count += 1
+        accepted_path = os.path.join(item_dir, "Accepted")
+        accepted_file = None
+        if os.path.exists(accepted_path):
+            accepted_files = os.listdir(accepted_path)
+            accepted_files.sort()
+            accepted_file = accepted_files[0]
+        
+        readme_content = generate_readme_content(item, accepted_file)
+        with open(readme_path, "w") as readme_file:
+            readme_file.write(readme_content)
     print(f"Generated {count} Readme.md files.")
 
 
